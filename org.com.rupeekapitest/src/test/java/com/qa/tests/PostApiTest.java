@@ -18,6 +18,7 @@ import com.jayway.restassured.specification.RequestSpecification;
 import com.qa.base.TestBase;
 
 import groovyjarjarantlr.collections.List;
+import junit.framework.Assert;
 
 
 public class PostApiTest extends TestBase
@@ -62,6 +63,7 @@ public class PostApiTest extends TestBase
     
     System.out.println(url);
     Response response = request.post(url);
+    Assert.assertEquals(response.getStatusCode(),200);
   
     String res = response.getBody().asString();
     System.out.println(res);
@@ -87,6 +89,7 @@ public class PostApiTest extends TestBase
 	  Response response = request.get(usersUrl);//test
 	  System.out.println(response.getStatusCode());
 	  System.out.println(response.getBody().asString());
+	  Assert.assertEquals(response.getStatusCode(),200);
 	  
 	  ArrayList<String> al = request.get(usersUrl).then().extract().path("phone");
 	  
